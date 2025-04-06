@@ -14,6 +14,8 @@ function GameComponent() {
     const [vi, setVi] = useState(0);
     const [miZvanje, setMiZvanje] = useState<number[]>([]);
     const [viZvanje, setViZvanje] = useState<number[]>([]);
+    const [count, setCount] = useState<number>(0);
+
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMiZvali(event.target.value === 'mi');
@@ -39,8 +41,22 @@ function GameComponent() {
             }
         }
 
-        setViHistory([...viHistory, viPartija]);
-        setMiHistory([...miHistory, miPartija]);
+        if (count === viHistory.length) {
+            setCount(count + 1);
+            setViHistory([...viHistory, viPartija]);
+            setMiHistory([...miHistory, miPartija]);
+        } else {
+            let tempMiHistory = [...miHistory];
+            let tempViHistory = [...viHistory];
+            setMiUkupno(miPartija + miUkupno - miHistory[count]);
+            setViUkupno(viPartija + viUkpno - viHistory[count]);
+            tempMiHistory[count] = miPartija;
+            tempViHistory[count] = viPartija;
+            setMiHistory(tempMiHistory);
+            setViHistory(tempViHistory);
+        }
+        setCount(miHistory.length);
+        setEditColor('#242424');
 
         setMiUkupno(miPartija + miUkupno);
         setViUkupno(viPartija + viUkpno);
@@ -58,10 +74,9 @@ function GameComponent() {
         if (viUkpno > 1000 && viUkpno > miUkupno) {
             alert('vi win')
         }
+        
     }
 
-    const edit = () => {
-    }
 
     return (
         <>
@@ -69,11 +84,17 @@ function GameComponent() {
                 <tr>
                     <td>Mi: {miUkupno}</td> <td>Vi: {viUkpno}</td>
                 </tr>
-                {miHistory.map((mi, index) => (
-                    <tr key={index} onClick={edit}>
-                        <td>{mi}</td> <td>{viHistory[index]}</td>
-                    </tr>
-                ))}
+                {miHistory.map((mi, index) => {
+                    if (index === count) {
+                        return (<tr key={index} style={{ backgroundColor: 'red'}}>
+                            <td>{mi}</td> <td>{viHistory[index]}</td>
+                        </tr>)
+                    } else {
+                        return ( <tr key={index} style={{ backgroundColor: '#242424'}} onClick={e => { setCount(index); }}>
+                            <td>{mi}</td> <td>{viHistory[index]}</td>
+                        </tr>)
+                    }  
+                    })}
                 <tr>
                     <td>
                         <label>
