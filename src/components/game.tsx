@@ -56,7 +56,6 @@ function GameComponent() {
             setViHistory(tempViHistory);
         }
         setCount(miHistory.length);
-        setEditColor('#242424');
 
         setMiUkupno(miPartija + miUkupno);
         setViUkupno(viPartija + viUkpno);
@@ -67,6 +66,7 @@ function GameComponent() {
         setMiZvanje([]);
         setViZvanje([]);
 
+        /*
         if (miUkupno > 1000 && miUkupno > viUkpno) {
             alert('mi win')
         }
@@ -74,10 +74,24 @@ function GameComponent() {
         if (viUkpno > 1000 && viUkpno > miUkupno) {
             alert('vi win')
         }
-        
+       */ 
     }
 
 
+    if(miUkupno > 1000 && miUkupno > viUkpno) {
+        alert('mi win')
+        setMiUkupno(0);
+        setViUkupno(0);
+        setMiHistory([]);
+        setViHistory([]);
+    }
+    if(viUkpno > 1000 && viUkpno > miUkupno) {
+        alert('vi win')
+        setMiUkupno(0);
+        setViUkupno(0);
+        setMiHistory([]);
+        setViHistory([]);
+    }
     return (
         <>
             <table>
