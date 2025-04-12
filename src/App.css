@@ -133,12 +133,33 @@
 
 .zvanje-icon-sellected, .zvanje-icon {
   background-color: #343434;
+  border: #343434 solid 2px;
   border-radius: 8px;
+  user-select: none;
 }
 
-
+.zvanje-icon-sellected {
+  background-color: #1A1A1A;
+  border: white solid 2px;
+}
 
 .zvanje-icon:hover {
   background-color: #a4acb5;
-  border-radius: 8px;
+  border: white solid 2px;
 }
+
+.zvanje-button {
+  position: relative;
+  width: 72px;
+}
+
+.zvanje-button:focus, .zvanje-button:focus-visible {
+  outline: none;
+}
+
+.zvanje-counter {
+  position: absolute;
+  top: 5px;
+  right: -5px;
+}
+

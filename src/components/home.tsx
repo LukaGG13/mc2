@@ -34,7 +34,7 @@ const HomeComponent: React.FC = () => {
 
   return (
     <div className="home-container">
-      <h1>Card Game</h1>
+      <h1>Bela Block</h1>
       <div className="button-container">
         <Link to={"/start-game"}>
             <NavigationButton text="Start Game" onClick={handleStartGame} />
