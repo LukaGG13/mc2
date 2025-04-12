@@ -6,7 +6,7 @@ export class Webcam {
    * Open webcam and stream it through video tag.
    * @param {HTMLVideoElement} videoRef video tag reference
    */
-  open = (videoRef) => {
+  open = (videoRef: HTMLVideoElement) => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia({

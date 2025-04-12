@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { Webcam } from "../utils/webcam";
-import React from "react";
+import { useState } from "react";
+import { Webcam } from "../../utils/yolo/webcam";
 
 const ButtonHandler = ({ cameraRef, isTorchSupported }) => {
 

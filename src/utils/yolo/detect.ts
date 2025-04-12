@@ -4,7 +4,7 @@ import labels from "./labels.json";
 
 const numClass = labels.length;
 
-let ignoredClasses = [];
+let ignoredClasses: string[] = [];
 
 const certain = 0.80;
 
@@ -15,7 +15,7 @@ const certain = 0.80;
  * @param {Number} modelHeight
  * @returns input tensor, xRatio and yRatio
  */
-const preprocess = (source, modelWidth, modelHeight) => {
+const preprocess = (source: any, modelWidth: number, modelHeight: number) => {
   let xRatio, yRatio; // ratios for boxes
 
   const input = tf.tidy(() => {

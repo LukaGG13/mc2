@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 
 function ZvanjeComponent({setMiZvanje, setViZvanje, miZvanje, viZvanje, reset}: {setMiZvanje: any, setViZvanje: any, miZvanje: number[], viZvanje: number[], reset: boolean}) {

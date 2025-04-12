@@ -1,6 +1,4 @@
-import React from "react";
 import { useState } from "react";
-import Zvanje from "./zvanje";
 import qrIcon from "../assets/qrIcon.svg";
 import { Link } from "react-router-dom";
 

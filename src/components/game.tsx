@@ -45,7 +45,7 @@ function TkoZove({setMiZvali}: {setMiZvali: any}) {
     )
 }
 
-function Upisi({mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZvanje, miUkupno, setMiUkupno, viUkpno, setViUkupno, miHistory, setMiHistory, viHistory, setViHistory, count, setCount, adut, setAdut, resetZvanje, setResetZvanje, miZvali, setMiZvali}: {
+function Upisi({mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZvanje, miUkupno, setMiUkupno, viUkpno, setViUkupno, miHistory, setMiHistory, viHistory, setViHistory, count, setCount, setAdut, resetZvanje, setResetZvanje, miZvali, setMiZvali}: {
     mi: number,
     vi: number,
     setMi: React.Dispatch<React.SetStateAction<number>>,
@@ -97,8 +97,8 @@ function Upisi({mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZvan
             setMiUkupno(miPartija + miUkupno);
             setViUkupno(viPartija + viUkpno);
         } else {
-            let tempMiHistory = [...miHistory];
-            let tempViHistory = [...viHistory];
+            const tempMiHistory = [...miHistory];
+            const tempViHistory = [...viHistory];
             setMiUkupno(miPartija + miUkupno - miHistory[count]);
             setViUkupno(viPartija + viUkpno - viHistory[count]);
             tempMiHistory[count] = miPartija;

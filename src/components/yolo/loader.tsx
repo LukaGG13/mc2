@@ -1,7 +1,6 @@
-import React from "react";
-import "../style/loader.css";
+import "../../styles/yolo/loader.css";
 
-const Loader = (props) => {
+const Loader = (props: any) => {
   return (
     <div className="wrapper" {...props}>
       <div className="spinner"></div>

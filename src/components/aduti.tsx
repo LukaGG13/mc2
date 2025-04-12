@@ -1,4 +1,3 @@
-import React from "react";
 import Herc from '../assets/herc.svg';
 import Pik from '../assets/pik.svg';
 import Tref from '../assets/tref.svg';

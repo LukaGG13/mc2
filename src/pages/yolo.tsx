@@ -5,7 +5,7 @@ import Loader from "../components/yolo/loader";
 import ButtonHandler from "../components/yolo/btn-handler";
 import { detectVideo } from "../utils/yolo/detect";
 import { flushSync } from "react-dom";
-import "./style/App.css";
+import "../styles/yolo/App.css";
 import { values, valuesAdut } from "../utils/yolo/weights";
 
 interface ModelState {
@@ -99,7 +99,7 @@ useEffect(() => {
   useEffect(() => {
     tf.ready().then(async () => {
       const yolov8 = await tf.loadGraphModel(
-        `${window.location.href}/${modelName}_web_model/model.json`,
+        `${window.location.origin}/${modelName}_web_model/model.json`,
         {
           onProgress: (fractions) => {
             setLoading({ loading: true, progress: fractions }); // set loading fractions
