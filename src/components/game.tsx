@@ -2,10 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import Zvanje from './zvanje';
 import BiranjeAduta from './aduti';
+import Yolo from '../pages/yolo';
 
 
-function RoundHistory({miHistory, viHistory, count, setCount}: {miHistory: number[], viHistory: number[], count: number, setCount: any}) {
-    return ( <>
+function RoundHistory({ miHistory, viHistory, count, setCount }: { miHistory: number[], viHistory: number[], count: number, setCount: any }) {
+    return (<>
         {miHistory.map((mi, index) => {
             if (index === count) {
                 return (<tr key={index} style={{ backgroundColor: 'red' }} onClick={() => { setCount(miHistory.length); }}>
@@ -17,12 +18,12 @@ function RoundHistory({miHistory, viHistory, count, setCount}: {miHistory: numbe
                 </tr>)
             }
         })
-    }
+        }
     </>
     );
 }
 
-function TkoZove({setMiZvali}: {setMiZvali: any}) {
+function TkoZove({ setMiZvali }: { setMiZvali: any }) {
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMiZvali(event.target.value === 'mi');
     };
@@ -45,7 +46,7 @@ function TkoZove({setMiZvali}: {setMiZvali: any}) {
     )
 }
 
-function Upisi({mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZvanje, miUkupno, setMiUkupno, viUkpno, setViUkupno, miHistory, setMiHistory, viHistory, setViHistory, count, setCount, setAdut, resetZvanje, setResetZvanje, miZvali, setMiZvali}: {
+function Upisi({ mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZvanje, miUkupno, setMiUkupno, viUkpno, setViUkupno, miHistory, setMiHistory, viHistory, setViHistory, count, setCount, setAdut, resetZvanje, setResetZvanje, miZvali, setMiZvali }: {
     mi: number,
     vi: number,
     setMi: React.Dispatch<React.SetStateAction<number>>,
@@ -151,36 +152,49 @@ function GameComponent() {
     const [adut, setAdut] = useState<string>('');
     const [resetZvanje, setResetZvanje] = useState<boolean>(false);
 
+    const [openYolo, setOpenYolo] = useState(false);
+
     return (
         <>
-            <table>
-                <tr>
-                    <td>Mi: {miUkupno}</td> <td>Vi: {viUkpno}</td>
-                </tr>
-                <RoundHistory miHistory={miHistory} viHistory={viHistory} count={count} setCount={setCount}/>
-                <tr>
-                    <TkoZove setMiZvali={setMiZvali} />
-                </tr>
-                <tr>
-                    <td colSpan={2}>
-                        <center>
-                            <BiranjeAduta adut={adut} setAdut={setAdut} />
-                        </center>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="text" value={"" + mi} onChange={e => {setMi(+e.target.value); setVi(162-+e.target.value)}} />
-                    </td>
-                    <td>
-                        <input type="text" value={"" + vi} onChange={e => {setVi(+e.target.value); setMi(162-+e.target.value)}} />
-                    </td>
-                </tr>
-            </table>
-            <center>
-                <Zvanje setMiZvanje={setMiZvanje} setViZvanje={setViZvanje} miZvanje={miZvanje} viZvanje={viZvanje} reset={resetZvanje}/>
-                <Upisi mi={mi} vi={vi} setMi={setMi} setVi={setVi} miZvanje={miZvanje} setMiZvanje={setMiZvanje} viZvanje={viZvanje} setViZvanje={setViZvanje} miUkupno={miUkupno} setMiUkupno={setMiUkupno} viUkpno={viUkpno} setViUkupno={setViUkupno} miHistory={miHistory} setMiHistory={setMiHistory} viHistory={viHistory} setViHistory={setViHistory} count={count} setCount={setCount} adut={adut} setAdut={setAdut} resetZvanje={resetZvanje} setResetZvanje={setResetZvanje} miZvali={miZvali} setMiZvali={setMiZvali}/>
-            </center>
+            {!openYolo && <>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Mi: {miUkupno}</td>
+                            <td>Vi: {viUkpno}</td>
+                        </tr>
+                        <tr>
+                            <RoundHistory miHistory={miHistory} viHistory={viHistory} count={count} setCount={setCount} />
+                        </tr>
+                        <tr>
+                            <TkoZove setMiZvali={setMiZvali} />
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <center>
+                                    <BiranjeAduta adut={adut} setAdut={setAdut} />
+                                </center>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" value={"" + mi} onChange={e => { setMi(+e.target.value); setVi(162 - +e.target.value) }} />
+                            </td>
+                            <td>
+                                <input type="text" value={"" + vi} onChange={e => { setVi(+e.target.value); setMi(162 - +e.target.value) }} />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <center>
+                    <Zvanje setMiZvanje={setMiZvanje} setViZvanje={setViZvanje} miZvanje={miZvanje} viZvanje={viZvanje} reset={resetZvanje} />
+                    <Upisi mi={mi} vi={vi} setMi={setMi} setVi={setVi} miZvanje={miZvanje} setMiZvanje={setMiZvanje} viZvanje={viZvanje} setViZvanje={setViZvanje} miUkupno={miUkupno} setMiUkupno={setMiUkupno} viUkpno={viUkpno} setViUkupno={setViUkupno} miHistory={miHistory} setMiHistory={setMiHistory} viHistory={viHistory} setViHistory={setViHistory} count={count} setCount={setCount} adut={adut} setAdut={setAdut} resetZvanje={resetZvanje} setResetZvanje={setResetZvanje} miZvali={miZvali} setMiZvali={setMiZvali} />
+                </center>
+            </>}
+            <button onClick={() => { setOpenYolo(!openYolo); }}>YOLO</button>
+            {openYolo && <div className="yolo">
+                < Yolo adut={adut} />
+            </div>}
         </>
     )
 } export default GameComponent;

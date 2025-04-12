@@ -52,7 +52,7 @@ const preprocess = (source: any, modelWidth: number, modelHeight: number) => {
 export const detect = async (source, model, canvasRef, callback = () => {}) => {
   const [modelWidth, modelHeight] = model.inputShape.slice(1, 3); // get model width and height
 
-  tf.engine().startScope(); // start scoping tf engine
+ // tf.engine().startScope(); // start scoping tf engine
   const [input, xRatio, yRatio] = preprocess(source, modelWidth, modelHeight); // preprocess image
 
   const res = model.net.execute(input); // inference model
@@ -90,7 +90,7 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
   // If this frame’s detections contain an ignored class, skip immediately
   if (classes_data.some((cls: any) => ignoredClasses.includes(cls as never))) {
     tf.dispose([res, transRes, boxes, scores, classes, nms]);
-    tf.engine().endScope();
+   // tf.engine().endScope();
     callback();
     return;
   }
@@ -107,7 +107,7 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
 
   callback();
 
-  tf.engine().endScope(); // end of scoping
+  //tf.engine().endScope(); // end of scoping
 };
 
 

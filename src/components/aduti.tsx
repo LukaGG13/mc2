@@ -5,10 +5,10 @@ import Kara from '../assets/kara.svg';
 
 function BiranjeAduta({adut, setAdut}: {adut:any, setAdut: any}) {
     const suits = [
-        { name: 'Tref', icon: Tref },
-        { name: 'Kara', icon: Kara },
-        { name: 'Herc', icon: Herc },
-        { name: 'Pik', icon: Pik }
+        { name: 'Tref', icon: Tref, value: 3 },
+        { name: 'Kara', icon: Kara, value: 1 },
+        { name: 'Herc', icon: Herc, value: 0 },
+        { name: 'Pik', icon: Pik, value: 2 }
     ];
 
     return (

@@ -25,6 +25,12 @@ function StartGameComponent() {
     return (
         <>
             <table className="player-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td>

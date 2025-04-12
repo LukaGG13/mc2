@@ -22,9 +22,8 @@ interface TorchConstraint extends MediaTrackConstraintSet {
   torch?: boolean;
 }
 
-const adut = 2;
-
-const Yolo = () => {
+const Yolo = ({ adut }) => {
+  console.log("Adut value: ", adut);
   const [loading, setLoading] = useState<LoadingState>({ loading: true, progress: 0 }); // loading state
   const [model, setModel] = useState<ModelState>({
     net: null,
@@ -167,19 +166,11 @@ useEffect(() => {
     }
   }
 
+  const debug = false;
+
   return (
     <div className="App">
       {loading.loading && <Loader>Loading model... {(loading.progress * 100).toFixed(2)}%</Loader>}
-      <div className="header">
-        <h1>📷 YOLOv8 Live Detection App</h1>
-        <p>
-          YOLOv8 live detection application on browser powered by <code>tensorflow.js</code>
-        </p>
-        <p>
-          Serving : <code className="code">{modelName}</code>
-        </p>
-      </div>
-
       <div className="content">
         <video
           autoPlay
@@ -218,10 +209,11 @@ useEffect(() => {
         if (torchSupported && torch) {
           setTorch(false);
         }
+        setPoints(0);
       }}>
       <ButtonHandler cameraRef={cameraRef} isTorchSupported={(value) => {setTorchSupported(value)}} />
       </div>
-      <div>
+      <div style={{ display: debug ? "block" : "none" }}>
         <h3>Current Detections:</h3>
         <pre>{JSON.stringify(seen, null)}</pre>
       </div>
