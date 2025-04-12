@@ -1,0 +1,50 @@
+description: Ultralytics YOLO11s model trained on ./datasets/new-dataset/dataset.yaml
+author: Ultralytics
+date: '2025-04-08T21:35:04.854931'
+version: 8.3.104
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 320
+- 320
+names:
+  0: Herc Sedmica
+  1: Herc Osmica
+  2: Herc Devetka
+  3: Herc Desetka
+  4: Herc Decko
+  5: Herc Dama
+  6: Herc Kralj
+  7: Herc As
+  8: Kara Sedmica
+  9: Kara Osmica
+  10: Kara Devetka
+  11: Kara Desetka
+  12: Kara Decko
+  13: Kara Dama
+  14: Kara Kralj
+  15: Kara As
+  16: Pik Sedmica
+  17: Pik Osmica
+  18: Pik Devetka
+  19: Pik Desetka
+  20: Pik Decko
+  21: Pik Dama
+  22: Pik Kralj
+  23: Pik As
+  24: Tref Sedmica
+  25: Tref Osmica
+  26: Tref Devetka
+  27: Tref Desetka
+  28: Tref Decko
+  29: Tref Dama
+  30: Tref Kralj
+  31: Tref As
+args:
+  batch: 1
+  half: false
+  int8: false
+  nms: false
