@@ -130,3 +130,15 @@
 .nav-button:hover {
   background-color: #3a7bc8;
 }
+
+.zvanje-icon-sellected, .zvanje-icon {
+  background-color: #343434;
+  border-radius: 8px;
+}
+
+
+
+.zvanje-icon:hover {
+  background-color: #a4acb5;
+  border-radius: 8px;
+}

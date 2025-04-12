@@ -39,8 +39,12 @@ const HomeComponent: React.FC = () => {
         <Link to={"/start-game"}>
             <NavigationButton text="Start Game" onClick={handleStartGame} />
         </Link>
-        <NavigationButton text="Settings" onClick={handleSettings} />
-        <NavigationButton text="Tournament" onClick={handleTournament} />
+        <Link to={"/settings"}>
+          <NavigationButton text="Settings" onClick={handleSettings} />
+        </Link>
+        <Link to={"/tournament"}>
+          <NavigationButton text="Tournament" onClick={handleTournament} />
+        </Link>
       </div>
     </div>
   );

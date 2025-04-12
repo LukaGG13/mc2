@@ -1,6 +1,40 @@
 import React from 'react';
 import { useState } from 'react';
 import Zvanje from './zvanje';
+import Herc from '../assets/herc.svg';
+import Pik from '../assets/pik.svg';
+import Tref from '../assets/tref.svg';
+import Kara from '../assets/kara.svg';
+
+
+function BiranjeAduta({adut, setAdut}: {adut:any, setAdut: any}) {
+    const suits = [
+        { name: 'Tref', icon: Tref },
+        { name: 'Kara', icon: Kara },
+        { name: 'Herc', icon: Herc },
+        { name: 'Pik', icon: Pik }
+    ];
+
+    return (
+        <table>
+            <tbody>
+                <tr>
+                    {suits.map((suit) => (
+                        <td key={suit.name}>
+                            <button 
+                                className={adut === suit.name ? "zvanje-icon-sellected" : "zvanje-icon"} 
+                                onClick={() => setAdut(suit.name)}
+                            >
+                                <img src={suit.icon} alt={suit.name} />
+                            </button>
+                        </td>
+                    ))}
+                </tr>
+            </tbody>
+        </table>
+    );
+}
+
 
 
 function GameComponent() {
@@ -15,8 +49,7 @@ function GameComponent() {
     const [miZvanje, setMiZvanje] = useState<number[]>([]);
     const [viZvanje, setViZvanje] = useState<number[]>([]);
     const [count, setCount] = useState<number>(0);
-    
-
+    const [adut, setAdut] = useState<string>('');
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMiZvali(event.target.value === 'mi');
@@ -116,6 +149,13 @@ function GameComponent() {
                     </td>
                 </tr>
                 <tr>
+                    <td colSpan={2}>
+                        <center>
+                            <BiranjeAduta adut={adut} setAdut={setAdut} />
+                        </center>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <input type="text" value={"" + mi} onChange={e => {setMi(+e.target.value); setVi(162-+e.target.value)}} />
                     </td>
@@ -134,7 +174,6 @@ function GameComponent() {
             </table>
             <center>
                 <Zvanje setMiZvanje={setMiZvanje} setViZvanje={setViZvanje} miZvanje={miZvanje} viZvanje={viZvanje} />
-                <p>{miZvali ? 'yay' : 'nah'}</p>
                 <button onClick={upis}>Upisi</button>
             </center>
         </>
