@@ -107,7 +107,7 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
 
   callback();
 
-  //tf.engine().endScope(); // end of scoping
+ // tf.engine().endScope(); // end of scoping
 };
 
 

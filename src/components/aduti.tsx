@@ -2,9 +2,10 @@ import Herc from '../assets/herc.svg';
 import Pik from '../assets/pik.svg';
 import Tref from '../assets/tref.svg';
 import Kara from '../assets/kara.svg';
+import { suit } from '../types/types';
 
-function BiranjeAduta({adut, setAdut}: {adut:any, setAdut: any}) {
-    const suits = [
+function BiranjeAduta({adut, setAdut}: {adut:suit, setAdut: any}) {
+    const suits: suit[] = [
         { name: 'Tref', icon: Tref, value: 3 },
         { name: 'Kara', icon: Kara, value: 1 },
         { name: 'Herc', icon: Herc, value: 0 },
@@ -18,8 +19,8 @@ function BiranjeAduta({adut, setAdut}: {adut:any, setAdut: any}) {
                     {suits.map((suit) => (
                         <td key={suit.name}>
                             <button 
-                                className={adut === suit.name ? "zvanje-icon-sellected" : "zvanje-icon"} 
-                                onClick={() => setAdut(suit.name)}
+                                className={adut.name === suit.name ? "zvanje-icon-sellected" : "zvanje-icon"} 
+                                onClick={() => setAdut(suit)}
                             >
                                 <img src={suit.icon} alt={suit.name} />
                             </button>

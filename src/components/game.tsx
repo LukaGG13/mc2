@@ -3,6 +3,9 @@ import { useState } from 'react';
 import Zvanje from './zvanje';
 import BiranjeAduta from './aduti';
 import Yolo from '../pages/yolo';
+import { suit } from '../types/types';
+import Tref from '../assets/tref.svg';
+import Camera from '../assets/camera.svg';
 
 
 function RoundHistory({ miHistory, viHistory, count, setCount }: { miHistory: number[], viHistory: number[], count: number, setCount: any }) {
@@ -65,8 +68,8 @@ function Upisi({ mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZva
     setViHistory: React.Dispatch<React.SetStateAction<number[]>>,
     count: number,
     setCount: React.Dispatch<React.SetStateAction<number>>,
-    adut: string,
-    setAdut: React.Dispatch<React.SetStateAction<string>>,
+    adut: suit,
+    setAdut: React.Dispatch<React.SetStateAction<suit>>,
     resetZvanje: boolean,
     setResetZvanje: React.Dispatch<React.SetStateAction<boolean>>,
     miZvali: boolean,
@@ -114,7 +117,7 @@ function Upisi({ mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZva
 
         setMiZvanje([]);
         setViZvanje([]);
-        setAdut('');
+        setAdut({ name: 'Tref', icon: Tref, value: 3 });
         setResetZvanje(!resetZvanje);
         setMiZvali(true);
 
@@ -149,23 +152,22 @@ function GameComponent() {
     const [miZvanje, setMiZvanje] = useState<number[]>([]);
     const [viZvanje, setViZvanje] = useState<number[]>([]);
     const [count, setCount] = useState<number>(0);
-    const [adut, setAdut] = useState<string>('');
+    const [adut, setAdut] = useState<suit>({name: 'Tref', icon: Tref, value: 3});
     const [resetZvanje, setResetZvanje] = useState<boolean>(false);
 
-    const [openYolo, setOpenYolo] = useState(false);
+    const [openYoloMi, setOpenYoloMi] = useState(false);
+    const [openYoloVi, setOpenYoloVi] = useState(false);
 
     return (
         <>
-            {!openYolo && <>
+            {!openYoloMi && !openYoloVi && <>
                 <table>
                     <tbody>
                         <tr>
                             <td>Mi: {miUkupno}</td>
                             <td>Vi: {viUkpno}</td>
                         </tr>
-                        <tr>
-                            <RoundHistory miHistory={miHistory} viHistory={viHistory} count={count} setCount={setCount} />
-                        </tr>
+                        <RoundHistory miHistory={miHistory} viHistory={viHistory} count={count} setCount={setCount} />
                         <tr>
                             <TkoZove setMiZvali={setMiZvali} />
                         </tr>
@@ -178,10 +180,25 @@ function GameComponent() {
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" value={"" + mi} onChange={e => { setMi(+e.target.value); setVi(162 - +e.target.value) }} />
+                                <input type="number" value={"" + mi} onChange={e => {
+                                    if (+e.target.value > 162) {
+                                        e.target.value = "162";
+                                    }
+                                    if (+e.target.value < 0) {
+                                        e.target.value = "0";
+                                    }
+                                    setMi(+e.target.value); setVi(162 - +e.target.value) }} 
+                                />
                             </td>
                             <td>
-                                <input type="text" value={"" + vi} onChange={e => { setVi(+e.target.value); setMi(162 - +e.target.value) }} />
+                                <input type="number" value={"" + vi} onChange={e => { 
+                                    if (+e.target.value > 162) {
+                                        e.target.value = "162";
+                                    }
+                                    if (+e.target.value < 0) {
+                                        e.target.value = "0";
+                                    }
+                                    setVi(+e.target.value); setMi(162 - +e.target.value) }} />
                             </td>
                         </tr>
                     </tbody>
@@ -191,9 +208,19 @@ function GameComponent() {
                     <Upisi mi={mi} vi={vi} setMi={setMi} setVi={setVi} miZvanje={miZvanje} setMiZvanje={setMiZvanje} viZvanje={viZvanje} setViZvanje={setViZvanje} miUkupno={miUkupno} setMiUkupno={setMiUkupno} viUkpno={viUkpno} setViUkupno={setViUkupno} miHistory={miHistory} setMiHistory={setMiHistory} viHistory={viHistory} setViHistory={setViHistory} count={count} setCount={setCount} adut={adut} setAdut={setAdut} resetZvanje={resetZvanje} setResetZvanje={setResetZvanje} miZvali={miZvali} setMiZvali={setMiZvali} />
                 </center>
             </>}
-            <button onClick={() => { setOpenYolo(!openYolo); }}>YOLO</button>
-            {openYolo && <div className="yolo">
-                < Yolo adut={adut} />
+            {!openYoloMi && !openYoloVi && <button onClick={() => { setOpenYoloMi(!openYoloMi); }}><img src={Camera} alt={"Bodovi kamera mi"}/></button>}
+            {!openYoloVi && !openYoloMi && <button onClick={() => { setOpenYoloVi(!openYoloVi); }}><img src={Camera} alt={"Bodovi kamera vi"}/></button>}
+            {openYoloMi && <div className="yolo">
+                <Yolo suit={adut} _setPoints={(points: number) =>{
+                    setMi(points);
+                    setVi(162 - points);
+                }} setOpenYolo={setOpenYoloMi} />
+            </div>}
+            {openYoloVi && <div className="yolo">
+                <Yolo suit={adut} _setPoints={(points: number) =>{
+                    setVi(points);
+                    setMi(162 - points);
+                }} setOpenYolo={setOpenYoloVi} />
             </div>}
         </>
     )
