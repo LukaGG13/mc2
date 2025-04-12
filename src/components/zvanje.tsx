@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState, useRef } from 'react';
 
 
-function ZvanjeComponent({setMiZvanje, setViZvanje, miZvanje, viZvanje}: {setMiZvanje: any, setViZvanje: any, miZvanje: number[], viZvanje: number[]}) {
+function ZvanjeComponent({setMiZvanje, setViZvanje, miZvanje, viZvanje, reset}: {setMiZvanje: any, setViZvanje: any, miZvanje: number[], viZvanje: number[], reset: boolean}) {
 
   const [miCounter, setMiCounter] = useState<(number | null)[]>([null, null, null, null, null, null, null]);
   const [viCounter, setViCounter] = useState<(number | null)[]>([null, null, null, null, null, null, null]);
@@ -20,6 +20,13 @@ function ZvanjeComponent({setMiZvanje, setViZvanje, miZvanje, viZvanje}: {setMiZ
     setViCounter(newViCounter);
     setViZvanje([...viZvanje, zvanje.current[index]]);
   }
+
+  useEffect(() => {
+    setMiCounter([null, null, null, null, null, null, null]);
+    setViCounter([null, null, null, null, null, null, null]);
+    setMiZvanje([]);
+    setViZvanje([]);
+  }, [reset]);
 
   return (
     <table>
@@ -67,7 +74,6 @@ function ZvanjeComponent({setMiZvanje, setViZvanje, miZvanje, viZvanje}: {setMiZ
           }} style={{width: '100%'}}>Reset</button>
         </td>
       </tr>
-
     </table>
   );
 } export default ZvanjeComponent;
