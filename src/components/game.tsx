@@ -158,6 +158,56 @@ function GameComponent() {
     const [openYoloMi, setOpenYoloMi] = useState(false);
     const [openYoloVi, setOpenYoloVi] = useState(false);
 
+
+    /* trenutno preboji koliko je puta bilo svako zvanje
+    prebacit cu i u zvanju da ovak funkcijnira onda nece bit potreba za ovim
+    nadam se da ti je dobar json :heart: :thumbsup: 
+    */
+    const roundToJson = () => {
+        let zm:number[] = [0, 0, 0, 0, 0, 0, 0];
+        let zv:number[] = [0, 0, 0, 0, 0, 0, 0];
+        for(let zvanje of miZvanje) {
+            if (zvanje == 20) zm[0]++;
+            if (zvanje == 50) zm[1]++;
+            if (zvanje == 100) zm[2]++;
+            if (zvanje == 150) zm[3]++;
+            if (zvanje == 200) zm[4]++;
+            if (zvanje == 1001) zm[5]++;
+        }
+
+        for(let zvanje of viZvanje) {
+            if (zvanje == 20) zv[0]++;
+            if (zvanje == 50) zv[1]++;
+            if (zvanje == 100) zv[2]++;
+            if (zvanje == 150) zv[3]++;
+            if (zvanje == 200) zv[4]++;
+            if (zvanje == 1001) zv[5]++;
+        }     
+
+        const data = {
+            "teamName": "name",
+            "mainUser": "uid",
+            "friendUser": "uid | name",
+            "againstUser1": "uid | name",
+            "againstUser2": "uid | name",
+            "iniviteToken": "uuid-v4",
+            "partije": [
+                {
+                    "iwqewqewqewqed": {
+                        "d": "stwewering",
+                        "bm": mi,
+                        "bv": vi,
+                        "a": adut.value, 
+                        "zm" : zm,
+                        "zv" : zv,
+                    }
+                }
+            ]
+        }
+        return JSON.stringify(data, null, 2);
+    }
+    
+
     return (
         <>
             {!openYoloMi && !openYoloVi && <>
