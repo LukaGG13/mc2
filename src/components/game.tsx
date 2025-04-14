@@ -13,11 +13,11 @@ function RoundHistory({ miHistory, viHistory, count, setCount }: { miHistory: nu
         {miHistory.map((mi, index) => {
             if (index === count) {
                 return (<tr key={index} style={{ backgroundColor: 'red' }} onClick={() => { setCount(miHistory.length); }}>
-                    <td>{mi}</td> <td>{viHistory[index]}</td>
+                    <td>{mi}</td><td>{viHistory[index]}</td>
                 </tr>)
             } else {
                 return (<tr key={index} style={{ backgroundColor: '#242424' }} onClick={() => { setCount(index); }}>
-                    <td>{mi}</td> <td>{viHistory[index]}</td>
+                    <td>{mi}</td><td>{viHistory[index]}</td>
                 </tr>)
             }
         })
@@ -152,7 +152,7 @@ function GameComponent() {
     const [miZvanje, setMiZvanje] = useState<number[]>([]);
     const [viZvanje, setViZvanje] = useState<number[]>([]);
     const [count, setCount] = useState<number>(0);
-    const [adut, setAdut] = useState<suit>({name: 'Tref', icon: Tref, value: 3});
+    const [adut, setAdut] = useState<suit>({ name: 'Tref', icon: Tref, value: 3 });
     const [resetZvanje, setResetZvanje] = useState<boolean>(false);
 
     const [openYoloMi, setOpenYoloMi] = useState(false);
@@ -162,11 +162,12 @@ function GameComponent() {
     /* trenutno preboji koliko je puta bilo svako zvanje
     prebacit cu i u zvanju da ovak funkcijnira onda nece bit potreba za ovim
     nadam se da ti je dobar json :heart: :thumbsup: 
+    :heart: :thumbsup: 
     */
     const roundToJson = () => {
-        let zm:number[] = [0, 0, 0, 0, 0, 0, 0];
-        let zv:number[] = [0, 0, 0, 0, 0, 0, 0];
-        for(let zvanje of miZvanje) {
+        let zm: number[] = [0, 0, 0, 0, 0, 0, 0];
+        let zv: number[] = [0, 0, 0, 0, 0, 0, 0];
+        for (let zvanje of miZvanje) {
             if (zvanje == 20) zm[0]++;
             if (zvanje == 50) zm[1]++;
             if (zvanje == 100) zm[2]++;
@@ -175,14 +176,14 @@ function GameComponent() {
             if (zvanje == 1001) zm[5]++;
         }
 
-        for(let zvanje of viZvanje) {
+        for (let zvanje of viZvanje) {
             if (zvanje == 20) zv[0]++;
             if (zvanje == 50) zv[1]++;
             if (zvanje == 100) zv[2]++;
             if (zvanje == 150) zv[3]++;
             if (zvanje == 200) zv[4]++;
             if (zvanje == 1001) zv[5]++;
-        }     
+        }
 
         const data = {
             "teamName": "name",
@@ -197,16 +198,16 @@ function GameComponent() {
                         "d": "stwewering",
                         "bm": mi,
                         "bv": vi,
-                        "a": adut.value, 
-                        "zm" : zm,
-                        "zv" : zv,
+                        "a": adut.value,
+                        "zm": zm,
+                        "zv": zv,
                     }
                 }
             ]
         }
         return JSON.stringify(data, null, 2);
     }
-    
+
 
     return (
         <>
@@ -237,9 +238,9 @@ function GameComponent() {
                                     if (+e.target.value < 0 || e.target.value == "") {
                                         e.target.value = "";
                                     }
-                                    if (e.target.value != '') {setMi(+e.target.value); setVi(162 - +e.target.value)}
-                                    else {setMi(''); setVi('')}
-                                    }} 
+                                    if (e.target.value != '') { setMi(+e.target.value); setVi(162 - +e.target.value) }
+                                    else { setMi(''); setVi('') }
+                                }}
                                 />
                             </td>
                             <td>
@@ -250,9 +251,9 @@ function GameComponent() {
                                     if (+e.target.value < 0 || e.target.value == "") {
                                         e.target.value = "";
                                     }
-                                    if (e.target.value != '') {setVi(+e.target.value); setMi(162 - +e.target.value)}
-                                    else {setVi(''); setMi('')}
-                                    }} />
+                                    if (e.target.value != '') { setVi(+e.target.value); setMi(162 - +e.target.value) }
+                                    else { setVi(''); setMi('') }
+                                }} />
                             </td>
                         </tr>
                     </tbody>
@@ -262,16 +263,16 @@ function GameComponent() {
                     <Upisi mi={mi} vi={vi} setMi={setMi} setVi={setVi} miZvanje={miZvanje} setMiZvanje={setMiZvanje} viZvanje={viZvanje} setViZvanje={setViZvanje} miUkupno={miUkupno} setMiUkupno={setMiUkupno} viUkpno={viUkpno} setViUkupno={setViUkupno} miHistory={miHistory} setMiHistory={setMiHistory} viHistory={viHistory} setViHistory={setViHistory} count={count} setCount={setCount} adut={adut} setAdut={setAdut} resetZvanje={resetZvanje} setResetZvanje={setResetZvanje} miZvali={miZvali} setMiZvali={setMiZvali} />
                 </center>
             </>}
-            {!openYoloMi && !openYoloVi && <button onClick={() => { setOpenYoloMi(!openYoloMi); }}><img src={Camera} alt={"Bodovi kamera mi"}/></button>}
-            {!openYoloVi && !openYoloMi && <button onClick={() => { setOpenYoloVi(!openYoloVi); }}><img src={Camera} alt={"Bodovi kamera vi"}/></button>}
+            {!openYoloMi && !openYoloVi && <button onClick={() => { setOpenYoloMi(!openYoloMi); }}><img src={Camera} alt={"Bodovi kamera mi"} /></button>}
+            {!openYoloVi && !openYoloMi && <button onClick={() => { setOpenYoloVi(!openYoloVi); }}><img src={Camera} alt={"Bodovi kamera vi"} /></button>}
             {openYoloMi && <div className="yolo">
-                <Yolo suit={adut} _setPoints={(points: number) =>{
+                <Yolo suit={adut} _setPoints={(points: number) => {
                     setMi(points);
                     setVi(162 - points);
                 }} setOpenYolo={setOpenYoloMi} />
             </div>}
             {openYoloVi && <div className="yolo">
-                <Yolo suit={adut} _setPoints={(points: number) =>{
+                <Yolo suit={adut} _setPoints={(points: number) => {
                     setVi(points);
                     setMi(162 - points);
                 }} setOpenYolo={setOpenYoloVi} />

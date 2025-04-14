@@ -86,8 +86,6 @@ const HomeComponent: React.FC = () => {
     )
   }
 
-  console.log(currentUser)
-
   return (
     <div className="home-container">
       <h1>Bela Block</h1>
