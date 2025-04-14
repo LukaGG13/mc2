@@ -50,10 +50,10 @@ function TkoZove({ setMiZvali }: { setMiZvali: any }) {
 }
 
 function Upisi({ mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZvanje, miUkupno, setMiUkupno, viUkpno, setViUkupno, miHistory, setMiHistory, viHistory, setViHistory, count, setCount, setAdut, resetZvanje, setResetZvanje, miZvali, setMiZvali }: {
-    mi: number,
-    vi: number,
-    setMi: React.Dispatch<React.SetStateAction<number>>,
-    setVi: React.Dispatch<React.SetStateAction<number>>,
+    mi: number | string,
+    vi: number | string,
+    setMi: React.Dispatch<React.SetStateAction<number | string>>,
+    setVi: React.Dispatch<React.SetStateAction<number | string>>,
     miZvanje: number[],
     setMiZvanje: React.Dispatch<React.SetStateAction<number[]>>,
     viZvanje: number[],
@@ -76,8 +76,8 @@ function Upisi({ mi, vi, setMi, setVi, miZvanje, setMiZvanje, viZvanje, setViZva
     setMiZvali: React.Dispatch<React.SetStateAction<boolean>>
 }) {
     const upis = () => {
-        let miPartija: number = mi;
-        let viPartija: number = vi;
+        let miPartija: number = +mi;
+        let viPartija: number = +vi;
         miZvanje.map((elem: any) => miPartija += elem)
         viZvanje.map((elem: any) => viPartija += elem)
 
@@ -147,8 +147,8 @@ function GameComponent() {
     const [miZvali, setMiZvali] = useState<boolean>(true);
     const [miHistory, setMiHistory] = useState<number[]>([]);
     const [viHistory, setViHistory] = useState<number[]>([]);
-    const [mi, setMi] = useState(0);
-    const [vi, setVi] = useState(0);
+    const [mi, setMi] = useState<number | string>('');
+    const [vi, setVi] = useState<number | string>('');
     const [miZvanje, setMiZvanje] = useState<number[]>([]);
     const [viZvanje, setViZvanje] = useState<number[]>([]);
     const [count, setCount] = useState<number>(0);
@@ -180,25 +180,29 @@ function GameComponent() {
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" value={"" + mi} onChange={e => {
+                                <input type="number" value={mi} placeholder='0' onChange={e => {
                                     if (+e.target.value > 162) {
                                         e.target.value = "162";
                                     }
-                                    if (+e.target.value < 0) {
-                                        e.target.value = "0";
+                                    if (+e.target.value < 0 || e.target.value == "") {
+                                        e.target.value = "";
                                     }
-                                    setMi(+e.target.value); setVi(162 - +e.target.value) }} 
+                                    if (e.target.value != '') {setMi(+e.target.value); setVi(162 - +e.target.value)}
+                                    else {setMi(''); setVi('')}
+                                    }} 
                                 />
                             </td>
                             <td>
-                                <input type="number" value={"" + vi} onChange={e => { 
+                                <input type="number" value={vi} placeholder='0' onChange={e => {
                                     if (+e.target.value > 162) {
                                         e.target.value = "162";
                                     }
-                                    if (+e.target.value < 0) {
-                                        e.target.value = "0";
+                                    if (+e.target.value < 0 || e.target.value == "") {
+                                        e.target.value = "";
                                     }
-                                    setVi(+e.target.value); setMi(162 - +e.target.value) }} />
+                                    if (e.target.value != '') {setVi(+e.target.value); setMi(162 - +e.target.value)}
+                                    else {setVi(''); setMi('')}
+                                    }} />
                             </td>
                         </tr>
                     </tbody>
