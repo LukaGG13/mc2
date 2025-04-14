@@ -1,0 +1,19 @@
+{
+    "translation": {
+        "login": "Login",
+        "email": "Email",
+        "password": "Password",
+        "passwordsDontMatch": "Passwords don't match!",
+        "signUp": "Sign Up",
+        "confirmPassword": "Confirm Password",
+        "or": "Or",
+        "loginGoogle": "Login with Google",
+        "haveAccount": "Allready have an account?",
+        "dontHaveAcoount": "Don't yet have an account?",
+        "loggedInStatus": "Logged in status",
+        "goBack": "Go Back",
+        "signOut": "Sign Out",
+        "verifyEmail": "To be able to use your email-password login please verify your email. After you are done, come back here and refresh the app",
+        "sendVerEmail": "Send verification email"
+    }
+}
