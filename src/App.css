@@ -158,6 +158,8 @@
 }
 
 .zvanje-counter {
+  color: white;
+  z-index: 99;
   position: absolute;
   top: 5px;
   right: -5px;
