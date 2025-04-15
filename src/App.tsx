@@ -10,6 +10,7 @@ import Settings from './pages/Settings'
 import { useEffect } from 'react'
 import i18n from './i18n'
 import UpdateSW from './components/updateSW';
+import Teams from './pages/Teams'
 
 function App() {
 
@@ -32,6 +33,11 @@ function App() {
           <Route path="/" element={
             <ProtectedRoute>
               <HomeComponent />
+            </ProtectedRoute>
+          } />
+          <Route path="/teams" element={
+            <ProtectedRoute>
+              <Teams />
             </ProtectedRoute>
           } />
           <Route path="/game" element={
