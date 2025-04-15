@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/ProtectedRoute'
 import Settings from './pages/Settings'
 import { useEffect } from 'react'
 import i18n from './i18n'
+import UpdateSW from './components/updateSW';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   
   return (
     <>
+      <UpdateSW />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={

@@ -3,9 +3,9 @@ import './updateSW.css'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import { pwaInfo } from 'virtual:pwa-info'
 import { useTranslation } from 'react-i18next'
-import { version } from '../version'
+import { version } from '../version';
 
-//console.log(pwaInfo)
+console.log(pwaInfo)
 
 function UpdateSW() {
 
@@ -24,15 +24,16 @@ function UpdateSW() {
         updateServiceWorker,
     } = useRegisterSW({
         onRegisteredSW(swUrl, r) {
-            //console.log(`Service Worker at: ${swUrl}`)
+            console.log(`Service Worker at: ${swUrl}`)
             if (reloadSW === 'true') {
-                r && setInterval(() => {
-                    //console.log('Checking for sw update')
-                    r.update()
-                }, 60000)
+                if (r) {
+                    setInterval(() => {
+                        //console.log('Checking for sw update')
+                        r.update()
+                    }, 60000)
+                }
             }
             else {
-                // eslint-disable-next-line prefer-template
                 //console.log('SW Registered: ' + r)
             }
         },

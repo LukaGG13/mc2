@@ -1,0 +1,26 @@
+{
+  "short_name": "Bela Block",
+  "name": "Bela Block",
+  "icons": [
+    {
+      "src": "icon/favicon.png",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icon/icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon/256x256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
