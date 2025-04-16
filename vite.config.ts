@@ -7,8 +7,12 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      manifestFilename: 'manifest.webmanifest',
+      injectRegister: 'auto',
       workbox: {
+        maximumFileSizeToCacheInBytes: 100 * 1024 * 1024, // 5MB
         cleanupOutdatedCaches: true,
+
         navigateFallback: '/index.html',
         navigateFallbackAllowlist: [
           new RegExp('^(?!/__).*')
@@ -18,8 +22,9 @@ export default defineConfig({
             urlPattern: /^\/__\//,
             handler: 'NetworkOnly',
           },
-        ]
-      }
+        ],
+      },
+      includeAssets: ['zlatko2_web_model/*', '/icon/*', 'manifest.webmanifest'],
     })
 
   ],

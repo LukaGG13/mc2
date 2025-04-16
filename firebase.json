@@ -7,12 +7,22 @@
       "**/node_modules/**"
     ]
   },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "emulators": {
-    "functions": {
-      "port": 5001
-    },
     "ui": {
-      "enabled": true
+      "enabled": true,
+      "host": "0.0.0.0"
+    },
+    "firestore": {
+      "enabled": true,
+      "host": "0.0.0.0"
+    },
+    "auth": {
+      "port": 9099,
+      "host": "0.0.0.0"
     },
     "singleProjectMode": true
   }

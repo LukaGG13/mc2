@@ -100,7 +100,7 @@ const Yolo = ({ suit, _setPoints, setOpenYolo }) => {
     const modelName = "zlatko2";
 
     useEffect(() => {
-        console.log("Loading model...");
+        //console.log("Loading model...");
         tf.ready().then(async () => {
             const yolov8 = await tf.loadGraphModel(
                 `${window.location.origin}/${modelName}_web_model/model.json`,
@@ -153,11 +153,11 @@ const Yolo = ({ suit, _setPoints, setOpenYolo }) => {
         for (let i = 0; i < newIgnoredClasses.length; i++) {
             const cls = newIgnoredClasses[i];
             if (cls == (cls % 8) + (adut * 8)) {
-                console.log("Adult detected, value: ", cls);
+                //console.log("Adult detected, value: ", cls);
                 points += valuesAdut[cls % 8];
             }
             else {
-                console.log("Child detected, value: ", cls);
+                //console.log("Child detected, value: ", cls);
                 points += values[cls % 8];
             }
         }

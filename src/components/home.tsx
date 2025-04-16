@@ -94,6 +94,9 @@ const HomeComponent: React.FC = () => {
         <Link to={"/start-game"}>
           <NavigationButton text="Start Game" onClick={handleStartGame} />
         </Link>
+        <Link to={"/teams"}>
+          <NavigationButton text="Teams" onClick={handleStartGame} />
+        </Link>
         <Link to={"/settings"}>
           <NavigationButton text="Settings" onClick={handleSettings} />
         </Link>

@@ -1,11 +1,11 @@
 import './updateSW.css'
 
 import { useRegisterSW } from 'virtual:pwa-register/react'
-import { pwaInfo } from 'virtual:pwa-info'
+// import { pwaInfo } from 'virtual:pwa-info'
 import { useTranslation } from 'react-i18next'
 import { version } from '../version';
 
-console.log(pwaInfo)
+//console.log(pwaInfo)
 
 function UpdateSW() {
 
@@ -24,7 +24,7 @@ function UpdateSW() {
         updateServiceWorker,
     } = useRegisterSW({
         onRegisteredSW(swUrl, r) {
-            console.log(`Service Worker at: ${swUrl}`)
+            //console.log(`Service Worker at: ${swUrl}`)
             if (reloadSW === 'true') {
                 if (r) {
                     setInterval(() => {

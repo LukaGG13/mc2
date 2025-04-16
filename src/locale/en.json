@@ -14,6 +14,9 @@
         "goBack": "Go Back",
         "signOut": "Sign Out",
         "verifyEmail": "To be able to use your email-password login please verify your email. After you are done, come back here and refresh the app",
-        "sendVerEmail": "Send verification email"
+        "sendVerEmail": "Send verification email",
+        "appHasUpdate": "The app has an update",
+        "appUpdateBtn": "Update",
+        "appUpdateLaterBtn": "Later"
     }
 }
