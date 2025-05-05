@@ -19,8 +19,8 @@ const db = getFirestore(app);
 
 
 if (process.env.NODE_ENV === 'development') {
-  connectFirestoreEmulator(db, '192.168.0.149', 8080);
-  connectAuthEmulator(auth, 'http://192.168.0.149:9099');
+  connectFirestoreEmulator(db, 'localhost', 8080);
+  connectAuthEmulator(auth, 'http://localhost:9099');
 }
 
 export { app, auth, db };
