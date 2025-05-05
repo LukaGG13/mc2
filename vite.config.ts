@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      manifestFilename: 'manifest.webmanifest',
+      //manifestFilename: 'manifest.webmanifest',
       injectRegister: 'auto',
       workbox: {
         maximumFileSizeToCacheInBytes: 100 * 1024 * 1024, // 5MB
