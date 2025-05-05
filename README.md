@@ -14,6 +14,12 @@ All of the results are saved on firebase. Statistics are available for players t
 ## Tournaments 
 We have a system that makes promoting tournaments to our player base just a few clicks away. While the players receive notifications about tournaments happening at their favorite bars and can sign up directly using the app.
 
+# Project requirements
+- Some IDE or text editor
+- Node LTS, with npm installed
+- Administrator access to your computer
+- Valid Gmail account
+
 # Setting up a Firebase project
 
 - Go to [Firebase Console](https://console.firebase.google.com/)
@@ -45,22 +51,32 @@ We have a system that makes promoting tournaments to our player base just a few 
 - Enable it, and add a support email for the project. Don't change anything else and click Save
 - Now on the top navbar choose Settings and check under "User account linking" the option chosen is "Link accounts that use the same email"
 
+# Setting up Hosting
+- On the left side in Firebase Console click on Build > Hosting
+- Click continue on all prompts until you get to the console
+
+# Configuring the project
+- Use either git clone or Download a ZIP to download the project
+- Extract it and open it with an IDE, we use Visual Studio Code
+- If not allready open, open the terminal either inside VS Code or as a seprate application and navigate to the main project directory and type `npm i` to install all required modules to run this application
+- While you wait open `src/.firebaserc` and replace our project name with your. You can find it by looking at the firebaseConfig from before, under projectId
+
 # How to deploy?
 
 ### Hint: You can look at your builds by clicking on the left side in Firebase Console click on Build > Hosting
 - In your console write `vite build`
 - After a successful build you can run `firebase deploy --only hosting`
-- After a build was successful you can go to the domain listed in the Firebase Console, it will be <your_project>.web.app
+- After a build was successful you can go to the domain listed in the Firebase Console under Build > Hosting, it will be <your_project>.web.app
 - If that was successful and you can login and interact with the app you also need to run this, _**but only once if not stated otherwise**_ `firebase deploy --only firestore:rules`
 
 # How to do CI/CD?
 
 - To deploy a new version to the world you just need to run two commands: `vite build` and `firebase deploy --only hosting`
-- After you should see the new version show up in the Firebase Console
+- After you should see the new version show up in the Firebase Console under the Hosting tab
 
 # How to run locally?
 
-- To run locally you just need to run `firebase emulators:start` if you want to test locally followed by running `vite --host` in a separate terminal
+- To run locally you just need to run `firebase emulators:start` followed by running `vite --host` in a separate terminal, then in the vite window you will see a list of available domains, it will probably be [http://localhost:5174](http://localhost:5174), open it in your browser
 - To run locally but using the production authentication and/or database go to `src/firebase/firebase.tsx` and comment out what you want to be served from production. After changing save the file and again run `vite --host`. If you decided you want some parts of the test environment run in a separate terminal `firebase emulators:start`
 
 ```JS
@@ -69,3 +85,5 @@ if (process.env.NODE_ENV === 'development') {
   connectAuthEmulator(auth, 'http://localhost:9099'); // Local Authentication
 }
 ```
+- To view what is happening in the emulator you can open your browser and go to [http://localhost:4000](http://localhost:4000)
+- For more information about the Firebase emulator you can click [here](https://firebase.google.com/docs/emulator-suite)
